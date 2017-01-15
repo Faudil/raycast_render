@@ -5,7 +5,7 @@
 ** Login <faudil.puttilli@epitech.eu@epitech.net>
 ** 
 ** Started on  Wed Dec 21 13:29:48 2016 Faudil Puttilli
-** Last update Thu Jan 12 16:25:02 2017 Faudil Puttilli
+** Last update Sun Jan 15 21:08:36 2017 Faudil Puttilli
 */
 
 #include "myCsfml.h"
@@ -28,7 +28,7 @@ void		init_fb(t_main *m)
     }
   while (i < m->fb->width * m->fb->height * 4)
     {
-      m->fb->pixels[i] = 0;
+      m->fb->pixels[i] = 70;
       i++;
     }
 }
@@ -46,8 +46,24 @@ void		draw_hud(t_main *m, sfVector2f pos, float dir)
   my_put_pixel(m->fb, disk.origin.x, disk.origin.y, color);
   if (m->map_visible == 1)
     draw_map(m, pos);
-  if (dir > 1000)
-    return;
+  if (dir)
+    dir += 0.0001;
+}
+
+void		draw_reflection(t_main *m, t_wall wall, sfVector2i from,
+				sfVector2i to)
+{
+  sfColor	color;
+
+  to.y = from.y;
+  from.y += wall.size / 2 - 20;
+  if (wall.side == 1)
+    color = set_color(wall.color.r / 8, wall.color.g / 8,
+		      wall.color.b / 6, 200);
+  else
+    color = set_color(wall.color.r / 6, wall.color.g / 6,
+		      wall.color.b / 6, 200);
+  my_draw_line(m->fb, from, to, color);
 }
 
 void		print_fb(t_main *m, sfVector2f pos, float dir)
@@ -56,7 +72,6 @@ void		print_fb(t_main *m, sfVector2f pos, float dir)
   sfVector2f	tmp;
   sfVector2i	from;
   sfVector2i	to;
-  float		size;
   t_wall	wall;
 
   from.x = -1;
@@ -70,9 +85,10 @@ void		print_fb(t_main *m, sfVector2f pos, float dir)
       tmp.x = a.x * cosf(dir) - a.y * sinf(dir);
       tmp.y = a.x * sinf(dir) + a.y * cosf(dir);
       wall = raycast(tmp, pos, m->map.map, m->map.map_size);
-      size = get_size(wall.dist, dir, tmp);
-      from.y = (int) (m->fb->height / 2 + size / 2);
-      to.y = (int) (m->fb->height / 2 - size / 2);
+      wall.size = get_size(wall.dist);
+      from.y = (int) (m->fb->height / 2 + wall.size / 2);
+      to.y = (int) (m->fb->height / 2 - wall.size / 2);
+      (m->reflect == 1) ? draw_reflection(m, wall, from, to) : 0;
       my_draw_line(m->fb, from, to, wall.color);
       to.x++;
     }

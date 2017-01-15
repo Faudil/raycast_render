@@ -5,15 +5,15 @@
 ** Login   <faudil.puttilli@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Nov 21 16:41:34 2016 Faudil Puttilli
-** Last update Thu Jan 12 16:14:42 2017 Faudil Puttilli
+** Last update Sun Jan 15 21:49:10 2017 Faudil Puttilli
 */
 
 #include "myCsfml.h"
 
 sfRenderWindow* 	create_window(char* name, int width, int height)
 {
-  sfRenderWindow* window;
-  sfVideoMode mode;
+  sfRenderWindow*	window;
+  sfVideoMode		mode;
 
   mode.width = width;
   mode.height = height;
@@ -64,12 +64,17 @@ int		create_map(char *str, char *name)
   t_main	m;
 
   m.map = parse_map(str, 1);
-  if (name != NULL)
+  if (name != NULL && (m.creator = 1))
     save_map(name, m.map);
+  else
+    m.creator = 0;
   m.file = name;
   m.speed = SPEED;
   m.map_visible = 0;
-  m.cube = '1';
+  m.cube = '6';
+  m.win = 0;
+  m.reflect = 0;
+  m.map.map[2][2] = '0';
   wolf3d(m);
   free_tab(m.map.map);
   free(str);
@@ -80,11 +85,15 @@ int     	wolf3d(t_main m)
 {
   sfVector2f	pos;
   float		dir;
+  sfMusic	*music;
 
+  music = sfMusic_createFromFile(choose_music(m.map.music));
+  if (music)
+    sfMusic_play(music);
   dir = M_PI / 2;
   pos.x = 2;
   pos.y = 2;
-  if ((m.window = create_window("Faudil", SCREEN_WIDTH, SCREEN_HEIGHT)))
+  if (!(m.window = create_window("Faudil", SCREEN_WIDTH, SCREEN_HEIGHT)))
     return (84);
   m.sprite = sfSprite_create();
   m.texture = sfTexture_create(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -94,6 +103,7 @@ int     	wolf3d(t_main m)
   sfTexture_updateFromPixels(m.texture, m.fb->pixels, m.fb->width,
 			     m.fb->height, 0, 0);
   event_manager(&m, pos, 0);
+  sfMusic_destroy(music);
   sfRenderWindow_destroy(m.window);
   free(m.fb);
   sfTexture_destroy(m.texture);

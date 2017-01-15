@@ -5,7 +5,7 @@
 ** Login   <faudil.puttilli@epitech.eu@epitech.net>
 ** 
 ** Started on  Fri Dec 30 22:06:31 2016 Faudil Puttilli
-** Last update Tue Jan 10 18:51:32 2017 Faudil Puttilli
+** Last update Sun Jan 15 15:08:48 2017 Faudil Puttilli
 */
 
 #include "myCsfml.h"
@@ -65,7 +65,7 @@ char		**str_to_map(char *str)
   while (str && str[i] != '\0')
     {
       k = 0;
-      if ((map[j] = malloc(sizeof(char) * nb_col + 1)) == NULL)
+      if ((map[j] = malloc(sizeof(char) * nb_col + 2)) == NULL)
 	return (NULL);
       while (str[i] != '\n' && str[i] != '\0')
 	map[j][k++] = str[i++];
@@ -80,9 +80,16 @@ t_map		parse_map(char *str, float square_size)
 {
   t_map		map;
 
+  if (*str >= 'A' && *str <= 'Z')
+    {
+      map.music = *str;
+      str++;
+    }
+  else
+    map.music = 'G';
   map.map = str_to_map(str);
   map.square_size = square_size;
-  map.map_size.x = nb_c(str);
+  map.map_size.x = nb_c(str) - 1;
   map.map_size.y = nb_line(str);
   return (map);
 }

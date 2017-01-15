@@ -5,7 +5,7 @@
 ** Login   <faudil.puttilli@epitech.eu@epitech.net>
 ** 
 ** Started on  Sat Dec 10 17:30:50 2016 Faudil Puttilli
-** Last update Wed Jan 11 21:36:06 2017 Faudil Puttilli
+** Last update Sun Jan 15 21:18:20 2017 Faudil Puttilli
 */
 
 #include "myCsfml.h"
@@ -13,9 +13,9 @@
 void	key_manager_rot(t_main *m, float *dir)
 {
   if (sfKeyboard_isKeyPressed(sfKeyLeft) == sfTrue)
-    *dir += M_PI / 64;
+    *dir += M_PI / 96;
   if (sfKeyboard_isKeyPressed(sfKeyRight) == sfTrue)
-    *dir -= M_PI / 64;
+    *dir -= M_PI / 96;
   if (sfKeyboard_isKeyPressed(sfKeyLShift) == sfTrue)
     m->speed = SPEED * 2.5;
   else
@@ -28,10 +28,10 @@ int	collision(t_main m, float dir, sfVector2f pos, char key)
   m.speed *= (key == 'S' || key == 'D') ? -1 : 1;
   if (m.map.map[(int) (pos.x + m.speed * cosf(dir))]
       [(int) (pos.y + m.speed * sinf(dir))] == '0' &&
-      pos.x + m.speed * cosf(dir) < m.map.map_size.y &&
-      pos.x + m.speed * cosf(dir) > 0
-      && pos.y + m.speed * sinf(dir) < m.map.map_size.x &&
-      pos.y + m.speed * sinf(dir) > 0)
+      pos.x + m.speed * cosf(dir) <= m.map.map_size.y &&
+      pos.x + m.speed * cosf(dir) > m.speed
+      && pos.y + m.speed * sinf(dir) <= m.map.map_size.x &&
+      pos.y + m.speed * sinf(dir) > m.speed)
     return (0);
   return (1);
 }
@@ -40,9 +40,11 @@ void	key_manager_event(t_main *m, float *dir, sfVector2f *pos)
 {
   if (m->event.type == sfEvtKeyPressed && m->event.key.code == sfKeyTab)
     m->map_visible = (m->map_visible == 1) ? 0 : 1;
+  if (m->event.type == sfEvtKeyPressed && m->event.key.code == sfKeyR)
+    m->reflect = (m->reflect == 1) ? 0 : 1;
   if (m->event.type == sfEvtKeyPressed && m->event.key.code == sfKeyReturn)
     save_map(m->file, m->map);
-  if (m->event.key.code > '0' && m->event.key.code < '5')
+  if (m->event.key.code > '0' && m->event.key.code < '7')
     m->cube = m->event.key.code;
   interact(m, dir, pos);
 }
@@ -78,7 +80,7 @@ void	key_manager(t_main *m, float *dir, sfVector2f *pos)
 
 void	event_manager(t_main *m, sfVector2f pos, float dir)
 {
-  while (sfRenderWindow_isOpen(m->window))
+  while (sfRenderWindow_isOpen(m->window) && m->win == 0)
     {
       while (sfRenderWindow_pollEvent(m->window, &m->event))
 	{

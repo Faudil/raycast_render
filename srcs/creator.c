@@ -5,7 +5,7 @@
 ** Login   <faudil.puttilli@epitech.eu@epitech.net>
 ** 
 ** Started on  Wed Jan 11 20:22:08 2017 Faudil Puttilli
-** Last update Thu Jan 12 16:23:07 2017 Faudil Puttilli
+** Last update Sun Jan 15 21:42:59 2017 Faudil Puttilli
 */
 
 #include "myCsfml.h"
@@ -32,8 +32,10 @@ void	save_map(char *file, t_map map)
 	write_file("\n", fd);
       i++;
     }
-  write_file("Saved\n", fd);
-  close(fd);
+  if (write(1, "Saved\n", 6) < -1)
+    close(fd);
+  else
+    close(fd);
 }
 
 char	*creator_mode(int len_x, int len_y)
@@ -44,7 +46,6 @@ char	*creator_mode(int len_x, int len_y)
 
   i = 0;
   j = 0;
-  printf("size (%i,%i)\n", len_x, len_y);
   if (!(map = malloc(sizeof(char) * ((len_x + 1) * len_y + 1))))
     return (NULL);
   while (j < len_y)

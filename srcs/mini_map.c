@@ -5,7 +5,7 @@
 ** Login   <faudil.puttilli@epitech.eu@epitech.net>
 ** 
 ** Started on  Tue Jan 10 14:55:31 2017 Faudil Puttilli
-** Last update Wed Jan 11 19:58:27 2017 Faudil Puttilli
+** Last update Sun Jan 15 18:27:33 2017 Faudil Puttilli
 */
 
 #include "myCsfml.h"
@@ -23,12 +23,9 @@ sfColor		set_color(int r, int g, int b, int a)
 
 void		print_case(t_my_framebuffer *fb, sfVector2i coord, char type)
 {
-  sfVector2f	pos;
   sfColor	color;
 
-  pos.x = 0;
-  pos.y = 0;
-  color = get_color(pos, type);
+  color = get_color(0, type);
   if (type != '0')
     draw_square(fb, set_square(coord, 10, 10), color);
   else
@@ -42,12 +39,12 @@ void		draw_map(t_main *m, sfVector2f pos)
   sfColor	color;
 
   inc.y = 0;
-  coord.y = m->fb->height - 300;
+  coord.y = m->fb->height / 2 - m->map.map_size.y * 5;
   color = set_color(200, 100, 10, 255);
   while (m->map.map[inc.y] != NULL)
     {
-      inc.x = my_strlen(m->map.map[inc.y]);
-      coord.x = m->fb->width / 2 - 200;
+      inc.x = my_strlen(m->map.map[inc.y]) - 1;
+      coord.x = m->fb->width / 2 - m->map.map_size.x * 5;
       while (inc.x >= 0)
 	{
 	  if (inc.x == (int) (pos.y) && inc.y == (int) (pos.x))
