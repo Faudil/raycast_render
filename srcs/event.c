@@ -5,7 +5,7 @@
 ** Login   <faudil.puttilli@epitech.eu@epitech.net>
 ** 
 ** Started on  Sat Dec 10 17:30:50 2016 Faudil Puttilli
-** Last update Sun Jan 15 21:18:20 2017 Faudil Puttilli
+** Last update Sun Jan 15 23:04:15 2017 Faudil Puttilli
 */
 
 #include "myCsfml.h"
@@ -42,10 +42,14 @@ void	key_manager_event(t_main *m, float *dir, sfVector2f *pos)
     m->map_visible = (m->map_visible == 1) ? 0 : 1;
   if (m->event.type == sfEvtKeyPressed && m->event.key.code == sfKeyR)
     m->reflect = (m->reflect == 1) ? 0 : 1;
+  if (m->event.type == sfEvtKeyPressed && m->event.key.code == sfKeyC)
+    m->creator = (m->creator == 1) ? 0 : 1;
   if (m->event.type == sfEvtKeyPressed && m->event.key.code == sfKeyReturn)
     save_map(m->file, m->map);
   if (m->event.key.code > '0' && m->event.key.code < '7')
     m->cube = m->event.key.code;
+  else if (m->event.key.code == sfKeyV)
+    m->cube = 'V';
   interact(m, dir, pos);
 }
 
