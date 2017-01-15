@@ -5,7 +5,7 @@
 ** Login   <faudil.puttilli@epitech.eu@epitech.net>
 **
 ** Started on  Sun Oct 23 17:52:37 2016 Faudil Puttilli
-** Last update Sun Jan 15 23:14:44 2017 Faudil Puttilli
+** Last update Sun Jan 15 23:40:54 2017 Faudil Puttilli
 */
 
 #ifndef MY_CSFML
@@ -115,34 +115,28 @@ float			get_size(float);
 char			*read_file_cat(char *);
 char			*creator_mode(int, int);
 char			*choose_music(char);
-
 t_my_framebuffer	*my_put_pixel(t_my_framebuffer *, int, int,
 				      sfColor);
-
 void			print_line_y(t_my_framebuffer *, sfVector2i, sfVector2i, sfColor);
 void			print_line_x(t_my_framebuffer *, sfVector2i, sfVector2i, sfColor);
 void			print_line_vertical(t_my_framebuffer *, sfVector2i, sfVector2i, sfColor);
 void			print_line_horizontal(t_my_framebuffer *, sfVector2i, sfVector2i, sfColor);
 void			my_draw_line(t_my_framebuffer *, sfVector2i, sfVector2i, sfColor);
-
 void			draw_square(t_my_framebuffer *, t_square, sfColor);
 void			draw_disk(t_disk, t_my_framebuffer *);
 t_square		set_square(sfVector2i, int, int);
 t_disk			set_disk(sfVector2i, int);
-
 void			print_fb(t_main *, sfVector2f, float);
 void			init_fb(t_main *);
 void			free_tab(char **);
 void			save_map(char *, t_map);
-
 sfColor			set_color(int, int, int, int);
 sfColor			get_color(char, char);
 void			event_manager(t_main *, sfVector2f, float);
 void			interact(t_main *, float *, sfVector2f *);
-
 t_map			parse_map(char *, float);
 char			**str_to_map(char *);
-
 void			draw_map(t_main *, sfVector2f);
+
 # endif
 /*! MY_CSFML */

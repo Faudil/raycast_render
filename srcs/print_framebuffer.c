@@ -5,7 +5,7 @@
 ** Login <faudil.puttilli@epitech.eu@epitech.net>
 ** 
 ** Started on  Wed Dec 21 13:29:48 2016 Faudil Puttilli
-** Last update Sun Jan 15 23:24:25 2017 Faudil Puttilli
+** Last update Sun Jan 15 23:39:54 2017 Faudil Puttilli
 */
 
 #include "myCsfml.h"
@@ -56,7 +56,7 @@ void		draw_hud(t_main *m, sfVector2f pos, float dir)
     dir += 0.0001;
   while (i < (m->fb->width * m->fb->height * 4) && m->night == 1)
     {
-      m->fb->pixels[i] -= (m->fb->pixels[i] > 60) ? 20 : 0;
+      m->fb->pixels[i] -= (m->fb->pixels[i] > 180) ? 20 : 0;
       i++;
     }
 }

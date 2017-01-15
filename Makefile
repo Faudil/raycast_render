@@ -5,7 +5,7 @@
 ## Login   <faudil.puttilli@epitech.net>
 ##
 ## Started on  Sun Oct 16 19:25:02 2016 Faudil PUTTILLI
-## Last update Sun Jan 15 14:33:04 2017 Faudil Puttilli
+## Last update Sun Jan 15 23:34:52 2017 Faudil Puttilli
 ##
 
 CC			= 	gcc
@@ -39,10 +39,10 @@ all: $(NAME)
 
 obj/%.o: %.c
 	@mkdir -p obj/srcs
-	$(CC) -Ofast -c -o $@ $< $(CFLAGS)
+	$(CC) -O2 -c -o $@ $< $(CFLAGS)
 
 $(NAME): $(OBJS)
-	$(CC) -Ofast $(OBJS) $(CSFML) -o $(NAME) $(LDFLAGS)
+	$(CC) -O2 $(OBJS) $(CSFML) -o $(NAME) $(LDFLAGS)
 
 clean:
 	$(RM) $(OBJS)
