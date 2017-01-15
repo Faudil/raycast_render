@@ -5,7 +5,7 @@
 ** Login   <faudil.puttilli@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Nov 21 16:41:34 2016 Faudil Puttilli
-** Last update Sun Jan 15 21:49:10 2017 Faudil Puttilli
+** Last update Sun Jan 15 23:15:46 2017 Faudil Puttilli
 */
 
 #include "myCsfml.h"
@@ -74,6 +74,7 @@ int		create_map(char *str, char *name)
   m.cube = '6';
   m.win = 0;
   m.reflect = 0;
+  m.night = 0;
   m.map.map[2][2] = '0';
   wolf3d(m);
   free_tab(m.map.map);

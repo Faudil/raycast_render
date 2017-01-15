@@ -5,7 +5,7 @@
 ** Login <faudil.puttilli@epitech.eu@epitech.net>
 ** 
 ** Started on  Wed Dec 21 13:29:48 2016 Faudil Puttilli
-** Last update Sun Jan 15 21:08:36 2017 Faudil Puttilli
+** Last update Sun Jan 15 23:20:12 2017 Faudil Puttilli
 */
 
 #include "myCsfml.h"
@@ -17,14 +17,21 @@ void		init_fb(t_main *m)
 
   i = 0;
   modulo = 1;
-  while (i < (m->fb->width * m->fb->height * 4) / 2)
+  while (i < (m->fb->width * m->fb->height * 4) / 2 && m->night == 0)
     {
-      m->fb->pixels[i] = 0 + (modulo / 6000);
+      m->fb->pixels[i] = (0 + (modulo / 6000));
       m->fb->pixels[i + 1] = (100 + modulo / 17000);
-      m->fb->pixels[i + 2] = 110 - (modulo / 70000);
-      m->fb->pixels[i + 3] = 255;
+      m->fb->pixels[i + 2] = (110 - (modulo / 70000));
       i += 4;
       modulo += 1;
+    }
+  while (i < (m->fb->width * m->fb->height * 4) / 2 && m->night == 1)
+    {
+      m->fb->pixels[i] = (0 + (modulo / 6000)) / 5;
+      m->fb->pixels[i + 1] = (100 + modulo / 17000) / 7;
+      m->fb->pixels[i + 2] = (110 - (modulo / 70000)) / 2;
+      i += 4;
+      modulo++;
     }
   while (i < m->fb->width * m->fb->height * 4)
     {

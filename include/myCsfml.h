@@ -5,7 +5,7 @@
 ** Login   <faudil.puttilli@epitech.eu@epitech.net>
 **
 ** Started on  Sun Oct 23 17:52:37 2016 Faudil Puttilli
-** Last update Sun Jan 15 21:15:40 2017 Faudil Puttilli
+** Last update Sun Jan 15 23:14:44 2017 Faudil Puttilli
 */
 
 #ifndef MY_CSFML
@@ -104,6 +104,7 @@ typedef struct 		s_main
   char			*file;
   char			creator;
   char			win;
+  char			night;
 }             		t_main;
 
 int			create_map(char *, char *);
