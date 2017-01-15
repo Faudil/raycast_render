@@ -5,7 +5,7 @@
 ** Login <faudil.puttilli@epitech.eu@epitech.net>
 ** 
 ** Started on  Wed Dec 21 13:29:48 2016 Faudil Puttilli
-** Last update Sun Jan 15 23:20:12 2017 Faudil Puttilli
+** Last update Sun Jan 15 23:24:25 2017 Faudil Puttilli
 */
 
 #include "myCsfml.h"
@@ -34,17 +34,16 @@ void		init_fb(t_main *m)
       modulo++;
     }
   while (i < m->fb->width * m->fb->height * 4)
-    {
-      m->fb->pixels[i] = 70;
-      i++;
-    }
+    m->fb->pixels[i++] = 70;
 }
 
 void		draw_hud(t_main *m, sfVector2f pos, float dir)
 {
   sfColor	color;
   t_disk	disk;
+  int		i;
 
+  i = 0;
   disk.origin.x = m->fb->width / 2;
   disk.origin.y = m->fb->height / 2;
   disk.ray = 10;
@@ -55,6 +54,11 @@ void		draw_hud(t_main *m, sfVector2f pos, float dir)
     draw_map(m, pos);
   if (dir)
     dir += 0.0001;
+  while (i < (m->fb->width * m->fb->height * 4) && m->night == 1)
+    {
+      m->fb->pixels[i] -= (m->fb->pixels[i] > 60) ? 20 : 0;
+      i++;
+    }
 }
 
 void		draw_reflection(t_main *m, t_wall wall, sfVector2i from,
