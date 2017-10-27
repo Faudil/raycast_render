@@ -5,7 +5,7 @@
 ** Login   <faudil.puttilli@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Nov 21 16:41:34 2016 Faudil Puttilli
-** Last update Sun Jan 15 23:38:54 2017 Faudil Puttilli
+** Last update Wed Jun  7 12:22:13 2017 guacamole
 */
 
 #include "myCsfml.h"
@@ -53,8 +53,8 @@ t_my_framebuffer	*my_put_pixel(t_my_framebuffer *fb, int x, int y,
   if (x > fb->width || y > fb->height || x < 0 || y < 0)
     return (0);
   fb->pixels[(fb->width * y + x) * 4] = color.r;
-  fb->pixels[(fb->width * y + x) * 4 + 2] = color.b;
   fb->pixels[(fb->width * y + x) * 4 + 1] = color.g;
+  fb->pixels[(fb->width * y + x) * 4 + 2] = color.b;
   fb->pixels[(fb->width * y + x) *  4 + 3] = color.a;
   return (fb);
 }
@@ -100,7 +100,6 @@ int     	wolf3d(t_main m)
   m.texture = sfTexture_create(SCREEN_WIDTH, SCREEN_HEIGHT);
   m.fb = my_framebuffer_create(SCREEN_WIDTH, SCREEN_HEIGHT);
   sfSprite_setTexture(m.sprite, m.texture, sfTrue);
-  init_fb(&m);
   print_fb(&m, pos, dir);
   sfTexture_updateFromPixels(m.texture, m.fb->pixels, m.fb->width,
 			     m.fb->height, 0, 0);

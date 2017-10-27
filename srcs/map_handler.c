@@ -5,7 +5,7 @@
 ** Login   <faudil.puttilli@epitech.eu@epitech.net>
 ** 
 ** Started on  Fri Dec 30 22:06:31 2016 Faudil Puttilli
-** Last update Sun Jan 15 15:08:48 2017 Faudil Puttilli
+** Last update Fri Jan 20 14:09:49 2017 Faudil Puttilli
 */
 
 #include "myCsfml.h"
@@ -87,6 +87,8 @@ t_map		parse_map(char *str, float square_size)
     }
   else
     map.music = 'G';
+  if (nb_c(str) < 6 || nb_line(str) < 6)
+    str = creator_mode(15, 15);
   map.map = str_to_map(str);
   map.square_size = square_size;
   map.map_size.x = nb_c(str) - 1;

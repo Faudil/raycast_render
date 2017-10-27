@@ -5,16 +5,16 @@
 ## Login   <faudil.puttilli@epitech.net>
 ##
 ## Started on  Sun Oct 16 19:25:02 2016 Faudil PUTTILLI
-## Last update Sun Jan 15 23:34:52 2017 Faudil Puttilli
+## Last update Wed Aug  2 15:42:09 2017 guacamole
 ##
 
-CC			= 	gcc
+CC			= 	gcc -Ofast
 
 RM			= 	rm -f
 
 CFLAGS	+=	-I./include -W -Wall -Wextra
 
-CSFML	= -lcsfml-window -lcsfml-graphics -lcsfml-audio -lm
+CSFML	= -lc_graph_prog -lm
 
 NAME    = 	wolf3d
 
@@ -39,10 +39,10 @@ all: $(NAME)
 
 obj/%.o: %.c
 	@mkdir -p obj/srcs
-	$(CC) -O2 -c -o $@ $< $(CFLAGS)
+	$(CC) -c -o $@ $< $(CFLAGS)
 
 $(NAME): $(OBJS)
-	$(CC) -O2 $(OBJS) $(CSFML) -o $(NAME) $(LDFLAGS)
+	$(CC) $(OBJS) $(CSFML) -o $(NAME) $(LDFLAGS)
 
 clean:
 	$(RM) $(OBJS)

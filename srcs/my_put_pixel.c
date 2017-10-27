@@ -5,7 +5,7 @@
 ** Login   <faudil.puttilli@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Nov 21 16:41:34 2016 Faudil Puttilli
-** Last update Sun Dec 11 20:19:04 2016 Faudil Puttilli
+** Last update Fri Jan 20 14:36:47 2017 Faudil Puttilli
 */
 
 #include "myCsfml.h"
@@ -20,8 +20,8 @@ t_my_framebuffer	*my_framebuffer_create(int x, int y)
   fb->pixels = malloc(x * y * 4 * sizeof(sfUint8));
   if (fb->pixels == NULL)
     return (NULL);
-   if (fb == NULL || fb->pixels == NULL)
-      exit(EXIT_FAILURE);
+  if (fb == NULL || fb->pixels == NULL)
+    exit(EXIT_FAILURE);
   i = 0;
   while (i < x * y * 4)
     {

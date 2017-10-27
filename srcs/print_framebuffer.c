@@ -5,7 +5,7 @@
 ** Login <faudil.puttilli@epitech.eu@epitech.net>
 ** 
 ** Started on  Wed Dec 21 13:29:48 2016 Faudil Puttilli
-** Last update Sun Jan 15 23:39:54 2017 Faudil Puttilli
+** Last update Thu May  4 17:29:41 2017 guacamole
 */
 
 #include "myCsfml.h"
@@ -67,7 +67,7 @@ void		draw_reflection(t_main *m, t_wall wall, sfVector2i from,
   sfColor	color;
 
   to.y = from.y;
-  from.y += wall.size / 2 - 20;
+  from.y += wall.size / 2 - 10;
   if (wall.side == 1)
     color = set_color(wall.color.r / 8, wall.color.g / 8,
 		      wall.color.b / 6, 200);
