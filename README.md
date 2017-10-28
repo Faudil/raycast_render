@@ -4,14 +4,14 @@ raycast render
 This project was first a school project but I had a lot of fun doing it so I created a few bonuses.
 
 
-##Usage
+## Usage
 To launch it once compiled just type :
 > ./raycast_render file_map
 
 If you want to launch it in creative mod :
 > ./raycast_render -c file_name map_width map_height
 
-##Keymap
+## Keymap
 
 Use **ZSQD** to move around the map
 **R** activate/desactivate reflection on the ground
