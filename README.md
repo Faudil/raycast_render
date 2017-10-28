@@ -21,7 +21,7 @@ Use **ZSQD** to move around the map
 **1234567** to change the color of the block you want to create
 **Enter** to save the map only if you launch the programm with the -c flag
 
-##Dependencies :
+## Dependencies :
 + csfml
 + lib math
 + glibc
